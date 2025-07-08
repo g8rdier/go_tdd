@@ -16,5 +16,5 @@ func SumAll(numbersToSum ...[]int) []int {
 		sums[i] = Sum(numbers)
 	}
 
-	return nil
+	return sums
 }
