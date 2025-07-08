@@ -11,7 +11,7 @@ func TestSum(t *testing.T) {
 	got := Sum(numbers)
 	want := []int{3, 9}
 
-	if got != want {
+	if !reflect.DeepEqual(got, want) {
 		t.Errorf("got %d want %d given, %v", got, want, numbers)
 	}
 }
