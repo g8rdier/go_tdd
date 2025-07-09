@@ -6,6 +6,9 @@ import (
 	"os"
 )
 
+const finalWord = "Go!"
+const countdownStart = 3
+
 func Countdown (out io.Writer) {
 	for i := 3; i > 0; i-- {
 		fmt.Fprintln(out, i)
