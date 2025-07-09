@@ -13,7 +13,6 @@ func TestCountdown(t *testing.T) {
 
 	got := buffer.String()
 	want := `3
-
 2
 1
 Go!`
