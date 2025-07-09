@@ -1,6 +1,9 @@
 package pointers
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 type Stringer interface {
 	String() string
@@ -25,6 +28,10 @@ func (b Bitcoin) String() string {
 }
 
 func (w *Wallet) Withdraw(amount Bitcoin) {
+
+	if amount > w.balance {
+		return errors.New("oh no")
+	}
 	w.balance -= amount
 	return nil
 }
