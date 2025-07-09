@@ -1,5 +1,9 @@
 package pointers
 
+type Stringer interface {
+	String() string
+}
+
 type Bitcoin int
 
 type Wallet struct {
