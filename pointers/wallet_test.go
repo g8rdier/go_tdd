@@ -20,6 +20,7 @@ func TestWallet(t *testing.T) {
 			t.Fatal("didn't get an error but wanted one")
 		}
 		if err.Error() != want {
+			t.Errorf("got %q, want %q", err.Error(), want)
 		}
 	}
 
