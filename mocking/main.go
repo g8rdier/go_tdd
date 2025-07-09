@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"bytes"
 )
 
 func Countdown (out *bytes.Buffer) {
