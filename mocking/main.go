@@ -37,5 +37,6 @@ func Countdown (out io.Writer, sleeper Sleeper) {
 }
 
 func main() {
-	Countdown(os.Stdout)
+	sleeper := &DefaultSleeper{}
+	Countdown(os.Stdout, sleeper)
 }
