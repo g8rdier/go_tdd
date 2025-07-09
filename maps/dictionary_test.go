@@ -43,6 +43,16 @@ func TestAdd(t *testing.T) {
 		assertDefinition(t, dictionary, word, definition)
 	})
 }
+func TestUpdate(t *testing.T) {
+	word := "test"
+	definition := "this is just a test"
+	dictionary := Dictionary{word: definition}
+	newDefinition := "new definition"
+
+	dictionary.Update(word, "new definition")
+
+	assertDefinition(t, dictionary, word, newDefinition)
+}
 
 func assertDefinition(t testing.TB, dictionary Dictionary, word, definition string) {
 	t.Helper()
