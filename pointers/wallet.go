@@ -1,6 +1,7 @@
 package pointers
 
 type Wallet struct {
+	balance int
 }
 
 func (w Wallet) Deposit(amount int) {
