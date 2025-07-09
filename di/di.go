@@ -3,11 +3,11 @@ package main
 import (
 	"fmt"
 	"io"
-	"os"
+	"log"
 	"net/http"
 )
 
-func Greet(writer io.writer, name string) {
+func Greet(writer io.Writer, name string) {
 	fmt.Fprintf(writer, "Hello, %s", name)
 }
 
