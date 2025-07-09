@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"bytes"
+	"io"
 )
 
-func Countdown (out *bytes.Buffer) {
+func Countdown (out io.Writer) {
 	fmt.Fprint(out, "3")
 }
