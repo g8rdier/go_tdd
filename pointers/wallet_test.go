@@ -44,5 +44,6 @@ func TestWallet(t *testing.T) {
 
 		if got.Error() != want {
 			t.Errorf("got %q, want %q", got, want)
+		}
 	}
 }
