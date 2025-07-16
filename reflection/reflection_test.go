@@ -54,7 +54,7 @@ func TestWalk(t *testing.T) {
 			[]string{"Chris", "London"},
 		},
 		{
-			"pointers to things",
+			"poinx this, we'll need to move our assertion with the maps to a new test where we do not care about the order.ters to things",
 			&Person{
 				"Chris",
 				Profile{33, "London"},
@@ -77,16 +77,21 @@ func TestWalk(t *testing.T) {
 			},
 			[]string{"London", "Reykjavík"},
 		},
-		{
-			"maps",
-			map[string]string{
-				"Cow":   "Moo",
-				"Sheep": "Baa",
-			},
-			[]string{"Moo", "Baa"},
-		},
 	}
+	t.Run("with maps", func(t *testing.T) {
+		aMap := map[string]string{
+			"Cow":   "Moo",
+			"Sheep": "Baa",
+		}
 
+		var got []string
+		walk(aMap, func(input string) {
+			got = append(got, input)
+		})
+
+		assertContains(t, got, "Moo")
+		assertContains(t, got, "Baa")
+	})
 	for _, test := range cases {
 		t.Run(test.Name, func(t *testing.T) {
 			var got []string
@@ -98,5 +103,18 @@ func TestWalk(t *testing.T) {
 				t.Errorf("got %v, want %v", got, test.ExpectedCalls)
 			}
 		})
+	}
+}
+
+func assertContains(t *testing.T, haystack []string, needle string) {
+	t.Helper()
+	contains := false
+	for _, x := range haystack {
+		if x == needle {
+			contains = true
+		}
+	}
+	if !contains {
+		t.Errorf("expected %v to contain %v, but it didn't", haystack, needle)
 	}
 }
