@@ -9,7 +9,7 @@ func walk(x interface{}, fn func(input string)) {
 		field := val.Field(i)
 
 		if field.Kind() == reflect.String {
-		fn(field.String())
+			fn(field.String())
+		}
 	}
-
 }
