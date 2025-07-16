@@ -6,12 +6,12 @@ import (
 )
 
 type Profile struct {
-	Age int
+	Age  int
 	City string
 }
 
 type Person struct {
-	Name string
+	Name    string
 	Profile Profile
 }
 
@@ -19,14 +19,14 @@ func TestWalk(t *testing.T) {
 
 	cases := []struct {
 		Name          string
-		Input         interface {}
+		Input         interface{}
 		ExpectedCalls []string
 	}{
 		{
 			"struct with one string field",
 			struct {
 				Name string
-			} {"Chris"},
+			}{"Chris"},
 			[]string{"Chris"},
 		},
 		{
@@ -34,20 +34,28 @@ func TestWalk(t *testing.T) {
 			struct {
 				Name string
 				City string
-			} {"Chris", "London"},
+			}{"Chris", "London"},
 			[]string{"Chris", "London"},
 		},
 		{
 			"struct with non string field",
 			struct {
 				Name string
-				Age int
+				Age  int
 			}{"Chris", 33},
 			[]string{"Chris"},
 		},
 		{
 			"nested fields",
 			Person{
+				"Chris",
+				Profile{33, "London"},
+			},
+			[]string{"Chris", "London"},
+		},
+		{
+			"pointers to things",
+			&Person{
 				"Chris",
 				Profile{33, "London"},
 			},
