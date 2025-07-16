@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 func TestWalk(t *testing.T) {
 
@@ -26,7 +29,7 @@ func TestWalk(t *testing.T) {
 			})
 
 			if !reflect.DeepEqual(got, test.ExpectedCalls) {
-				t.Errorf("got %v, want%v", got, test.ExpectedCalls)
+				t.Errorf("got %v, want %v", got, test.ExpectedCalls)
 			}
 		})
 	}
