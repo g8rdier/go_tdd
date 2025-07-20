@@ -14,7 +14,7 @@ type Sleeper interface {
 	Sleep()
 }
 
-type DefaultSleeper struct {}
+type DefaultSleeper struct{}
 
 func (d *DefaultSleeper) Sleep() {
 	time.Sleep(1 * time.Second)
@@ -28,11 +28,13 @@ func (s *SpySleeper) Sleep() {
 	s.Calls++
 }
 
-func Countdown (out io.Writer, sleeper Sleeper) {
+func Countdown(out io.Writer, sleeper Sleeper) {
 	for i := countdownStart; i > 0; i-- {
 		sleeper.Sleep()
 	}
 	for i := countdownStart; i > 0; i-- {
+		fmt.Fprint(out, i)
+	}
 	fmt.Fprint(out, finalWord)
 }
 
