@@ -61,3 +61,11 @@ type ConfigurableSleeper struct {
 	duration time.Duration
 	Sleep    func(time.Duration)
 }
+
+type SpyTime struct {
+	durationSlept time.Duration
+}
+
+func (s *SpyTime) SetDurationSlept(duration time.Duration) {
+	s.durationSlept = duration
+}
