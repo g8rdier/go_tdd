@@ -56,3 +56,8 @@ func (s *SpyCountdownOperations) Write(p []byte) (n int, err error) {
 
 const write = "write"
 const sleep = "sleep"
+
+type ConfigurableSleeper struct {
+	duration time.Duration
+	Sleep    func(time.Duration)
+}
