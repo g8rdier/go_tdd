@@ -59,7 +59,7 @@ const sleep = "sleep"
 
 type ConfigurableSleeper struct {
 	duration time.Duration
-	Sleep    func(time.Duration)
+	sleep    func(time.Duration)
 }
 
 type SpyTime struct {
