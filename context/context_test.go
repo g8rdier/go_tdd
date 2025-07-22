@@ -21,6 +21,15 @@ func (s *SpyStore) assertWasCancelled() {
 	}
 }
 
+func (s *SpyStore) Fetch() string {
+	time.Sleep(100 * time.Millisecond)
+	return s.response
+}
+
+func (s *SpyStore) Cancel() {
+	s.cancelled = true
+}
+
 func (s *SpyStore) assertWasNotCancelled() {
 	s.t.Helper()
 	if s.cancelled {
