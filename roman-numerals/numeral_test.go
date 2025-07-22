@@ -62,11 +62,3 @@ func TestConvertingToArabic(t *testing.T) {
 		})
 	}
 }
-
-func ConvertToArabic(roman string) int {
-	total := 0
-	for range roman {
-		total++
-	}
-	return total
-}
