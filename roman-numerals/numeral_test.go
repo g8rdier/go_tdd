@@ -3,6 +3,7 @@ package v1
 import (
 	"fmt"
 	"testing"
+	"testing/quick"
 )
 
 // Move `cases` here as a package-level variable
@@ -60,5 +61,17 @@ func TestConvertingToArabic(t *testing.T) {
 				t.Errorf("got %d, want %d", got, test.Arabic)
 			}
 		})
+	}
+}
+
+func TestPropertiesOfConversion(t *testing.T) {
+	assertion := func(arabic int) bool {
+		roman := ConvertToRoman(arabic)
+		fromRoman := ConvertToArabic(roman)
+		return fromRoman == arabic
+	}
+
+	if err := quick.Check(assertion, nil); err != nil {
+		t.Error("failed checks", err)
 	}
 }
