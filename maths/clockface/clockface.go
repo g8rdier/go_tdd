@@ -1,6 +1,9 @@
 package clockface
 
-import "time"
+import (
+	"math"
+	"time"
+)
 
 type Point struct {
 	X float64
@@ -12,5 +15,5 @@ func SecondHand(t time.Time) Point {
 }
 
 func secondsInRadians(t time.Time) float64 {
-	return 0
+	return math.Pi
 }
