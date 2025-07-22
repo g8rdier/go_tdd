@@ -24,7 +24,7 @@ func (s *SpyStore) Cancel() {
 
 func TestServer(t *testing.T) {
 	data := "hello, world"
-	svr := Server(&SpyStore{data})
+	svr := Server(&SpyStore{response: data})
 
 	request := httptest.NewRequest(http.MethodGet, "/", nil)
 	response := httptest.NewRecorder()
