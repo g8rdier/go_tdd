@@ -64,11 +64,9 @@ func TestConvertingToArabic(t *testing.T) {
 }
 
 func ConvertToArabic(roman string) int {
-	if roman == "III" {
-		return 3
+	total := 0
+	for range roman {
+		total++
 	}
-	if roman == "II" {
-		return 2
-	}
-	return 1
+	return total
 }
