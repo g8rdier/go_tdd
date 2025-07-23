@@ -16,6 +16,7 @@ func TestSecondsInRadians(t *testing.T) {
 		{simpleTime(0, 0, 45), (math.Pi / 2) * 3},
 		{simpleTime(0, 0, 7), (math.Pi / 30) * 7},
 	}
+
 	for _, c := range cases {
 		t.Run(testName(c.time), func(t *testing.T) {
 			got := secondsInRadians(c.time)
@@ -24,14 +25,6 @@ func TestSecondsInRadians(t *testing.T) {
 			}
 		})
 	}
-}
-
-func simpleTime(hours, minutes, seconds int) time.Time {
-	return time.Date(312, time.October, 28, hours, minutes, seconds, 0, time.UTC)
-}
-
-func testName(t time.Time) string {
-	return t.Format("15:04:05")
 }
 
 func TestSecondHandPoint(t *testing.T) {
@@ -47,20 +40,10 @@ func TestSecondHandPoint(t *testing.T) {
 		t.Run(testName(c.time), func(t *testing.T) {
 			got := secondHandPoint(c.time)
 			if !roughlyEqualPoint(got, c.point) {
-				t.Fatalf("Wanted %v, but got %v", c.point, got)
+				t.Fatalf("Wanted %v Point, but got %v", c.point, got)
 			}
 		})
 	}
-}
-
-func roughlyEqualFloat64(a, b float64) bool {
-	const equalityThreshold = 1e-7
-	return math.Abs(a-b) < equalityThreshold
-}
-
-func roughlyEqualPoint(a, b Point) bool {
-	return roughlyEqualFloat64(a.X, b.X) &&
-		roughlyEqualFloat64(a.Y, b.Y)
 }
 
 func TestMinutesInRadians(t *testing.T) {
@@ -71,6 +54,7 @@ func TestMinutesInRadians(t *testing.T) {
 		{simpleTime(0, 30, 0), math.Pi},
 		{simpleTime(0, 0, 7), 7 * (math.Pi / (30 * 60))},
 	}
+
 	for _, c := range cases {
 		t.Run(testName(c.time), func(t *testing.T) {
 			got := minutesInRadians(c.time)
@@ -94,8 +78,26 @@ func TestMinuteHandPoint(t *testing.T) {
 		t.Run(testName(c.time), func(t *testing.T) {
 			got := minuteHandPoint(c.time)
 			if !roughlyEqualPoint(got, c.point) {
-				t.Fatalf("Wanted %v, but got %v", c.point, got)
+				t.Fatalf("Wanted %v Point, but got %v", c.point, got)
 			}
 		})
 	}
+}
+
+func roughlyEqualFloat64(a, b float64) bool {
+	const equalityThreshold = 1e-7
+	return math.Abs(a-b) < equalityThreshold
+}
+
+func roughlyEqualPoint(a, b Point) bool {
+	return roughlyEqualFloat64(a.X, b.X) &&
+		roughlyEqualFloat64(a.Y, b.Y)
+}
+
+func simpleTime(hours, minutes, seconds int) time.Time {
+	return time.Date(312, time.October, 28, hours, minutes, seconds, 0, time.UTC)
+}
+
+func testName(t time.Time) string {
+	return t.Format("15:04:05")
 }
