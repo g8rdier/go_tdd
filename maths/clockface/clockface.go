@@ -19,5 +19,5 @@ func secondsInRadians(t time.Time) float64 {
 }
 
 func secondHandPoint(t time.Time) Point {
-	return Point{}
+	return Point{0, -1}
 }
