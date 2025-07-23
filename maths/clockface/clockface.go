@@ -36,5 +36,5 @@ func minutesInRadians(t time.Time) float64 {
 }
 
 func minuteHandPoint(t time.Time) Point {
-	return Point{}
+	return Point{0, -1}
 }
