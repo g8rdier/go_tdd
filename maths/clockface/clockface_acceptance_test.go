@@ -1,8 +1,8 @@
 package clockface_test
 
 import (
+	"bytes" // Changed from strings
 	"encoding/xml"
-	"strings"
 	"testing"
 	"time"
 
@@ -12,19 +12,23 @@ import (
 func TestSVGWriterAtMidnight(t *testing.T) {
 	tm := time.Date(1337, time.January, 1, 0, 0, 0, 0, time.UTC)
 
-	var b strings.Builder
+	b := bytes.Buffer{} // Changed from strings.Builder
 	clockface.SVGWriter(&b, tm)
 
 	svg := Svg{}
-	xml.Unmarshal([]byte(b.String()), &svg)
+	xml.Unmarshal(b.Bytes(), &svg) // b.Bytes() instead of []byte(b.String())
+
+	x2 := "150" // Define the expected values
+	y2 := "60"
 
 	for _, line := range svg.Line {
 		if line.X2 == x2 && line.Y2 == y2 {
-			return
+			return // Test passes if we find the expected line
 		}
 	}
 
-	t.Errorf("Expected to find the second hand %v, in SVG got %v", want, got)
+	// Fixed error message with proper variables
+	t.Errorf("Expected to find the second hand with x2 of %+v and y2 of %+v, in the SVG output %v", x2, y2, b.String())
 }
 
 func TestSecondHandAt30Seconds(t *testing.T) {
