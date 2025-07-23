@@ -3,6 +3,7 @@ package clockface_test
 import (
 	"bytes"
 	"encoding/xml"
+	"math"
 	"testing"
 	"time"
 
@@ -102,6 +103,23 @@ func TestSVGWriterMinuteHand(t *testing.T) {
 
 			if !containsLine(c.line, svg.Line) {
 				t.Errorf("Expected to find the minute hand line %+v, in the SVG lines %+v", c.line, svg.Line)
+			}
+		})
+	}
+}
+
+func TestMinutesInRadians(t *testing.T) {
+	cases := []struct {
+		time  time.Time
+		angle float64
+	}{
+		{simpleTime(0, 0, 30), math.Pi},
+	}
+	for _, c := range cases {
+		t.Run(testName(c.time), func(t *testing.T) {
+			got := minutesInRadians(c.time)
+			if got != c.angle {
+				t.Fatalf("Wanted %v radians, but got %v", c.angle, got)
 			}
 		})
 	}
